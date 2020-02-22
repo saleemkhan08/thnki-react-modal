@@ -1,0 +1,8 @@
+{
+  "short_name": "thnki-react-modal",
+  "name": "thnki-react-modal",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
