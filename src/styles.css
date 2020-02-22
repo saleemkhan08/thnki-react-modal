@@ -30,13 +30,6 @@
   padding-right: 15px;
   padding-left: 15px;
 }
-.thnki-modal-err-msg {
-  color: #a0220f;
-  text-align: center;
-  margin: 20px auto 20px auto;
-  font-size: 14px;
-  transition: all 0.9s ease-in;
-}
 
 .thnki-modal-btn {
   background-color: #e65540;

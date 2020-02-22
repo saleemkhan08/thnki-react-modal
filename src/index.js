@@ -21,7 +21,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { header, footer, children, onModalClose, openModal, isScrollableBody } = this.props
+    const { header, footer, children, onModalClose, openModal, isScrollableBody, ...others } = this.props
     const modalInnerClass = openModal ? 'thnki-show-modal-inner' : 'thnki-remove-modal-inner'
     const modalOuterClass = openModal ? 'thnki-show-modal-outer' : 'thnki-remove-modal-outer'
     const scrollableBodyClass = isScrollableBody ? 'thnki-modal-body' : ''
@@ -30,7 +30,7 @@ class Modal extends Component {
       return ''
     }
     return (
-      <div className={modalOuterClass + ' thnki-modal-outer-container'} >
+      <div className={modalOuterClass + ' thnki-modal-outer-container'} {...others} >
         <div className={modalInnerClass + ' thnki-modal-inner-container'}
           ref={(node) => {
             if (openModal) {
@@ -56,17 +56,18 @@ class Modal extends Component {
 }
 
 export const Header = (props) => {
-  return <div className='thnki-modal-header-container' >
-    {props.text}
+  const { text, ...others } = props
+  return <div className='thnki-modal-header-container' {...others} >
+    {text}
   </div >
 }
 
 export const Footer = (props) => {
-  const { isDisabled, acceptText, disabledText, cancelText, onCancel, onAccept } = props
+  const { isDisabled, acceptText, disabledText, cancelText, onCancel, onAccept, ...others } = props
   const disabledClass = isDisabled ? 'thnki-disabled' : ''
   const uploadText = isDisabled ? disabledText : acceptText
   return (
-    <div className='thnki-modal-footer-container'>
+    <div className='thnki-modal-footer-container' {...others} >
       <button className={'thnki-modal-btn thnki-modal-btn-primary ' + disabledClass}
         onClick={() => {
           if (!isDisabled) {
