@@ -55,14 +55,14 @@ class Modal extends Component {
   }
 }
 
-export const Header = (props) => {
+export const ModalHeader = (props) => {
   const { text, ...others } = props
   return <div className='thnki-modal-header-container' {...others} >
     {text}
   </div >
 }
 
-export const Footer = (props) => {
+export const ModalFooter = (props) => {
   const { isDisabled, acceptText, disabledText, cancelText, onCancel, onAccept, ...others } = props
   const disabledClass = isDisabled ? 'thnki-disabled' : ''
   const uploadText = isDisabled ? disabledText : acceptText
@@ -79,6 +79,24 @@ export const Footer = (props) => {
         onClick={() => { if (!isDisabled) onCancel() }}
       >{cancelText}</button>
     </div>
+  )
+}
+
+export const ConfirmationModal = (props) => {
+  const { onAccept, acceptText, cancelText, showConfirmation, onCancel, confirmationText } = props
+
+  return (
+    <Modal
+      onModalClose={onCancel}
+      openModal={showConfirmation} >
+      <ModalHeader style={{ paddingTop: '40px' }} text={confirmationText} />
+      <ModalFooter
+        style={{ textAlign: 'center' }}
+        acceptText={acceptText || 'ACCEPT'}
+        cancelText={cancelText || 'CANCEL'}
+        onCancel={onCancel}
+        onAccept={onAccept} />
+    </Modal>
   )
 }
 
