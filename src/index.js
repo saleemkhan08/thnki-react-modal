@@ -53,4 +53,30 @@ class Modal extends Component {
   }
 }
 
+export const Header = (props) => {
+  return <div className='thnki-modal-header-container' >
+    {props.text}
+  </div >
+}
+
+export const Footer = (props) => {
+  const { isDisabled, acceptText, disabledText, cancelText, onCancel, onAccept } = props
+  const disabledClass = isDisabled ? 'thnki-disabled' : ''
+  const uploadText = isDisabled ? disabledText : acceptText
+  return (
+    <div className='thnki-modal-footer-container'>
+      <button className={'thnki-modal-btn thnki-modal-btn-primary ' + disabledClass}
+        onClick={() => {
+          if (!isDisabled) {
+            onAccept()
+          }
+        }}
+      >{uploadText}</button>
+      <button className={'thnki-modal-btn thnki-modal-btn-default ' + disabledClass}
+        onClick={() => { if (!isDisabled) onCancel() }}
+      >{cancelText}</button>
+    </div>
+  )
+}
+
 export default Modal

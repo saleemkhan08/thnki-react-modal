@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Modal from 'thnki-react-modal'
+import Modal, { Footer, Header } from 'thnki-react-modal'
 import "./index.css"
 export default class App extends Component {
   state = {
@@ -11,7 +11,7 @@ export default class App extends Component {
         <button onClick={() => {
           this.setState({ openModal: true })
         }}> Open Modal </button>
-        <Modal header={this.header()}
+        <Modal header={<Header text="Header" />}
           footer={this.footer()} onModalClose={() => { this.setState({ openModal: false }) }} openModal={this.state.openModal}>
           <div className="custom-modal-body">Modal Body</div>
         </Modal>
@@ -19,11 +19,17 @@ export default class App extends Component {
     )
   }
 
-  header = () => {
-    return <div className="custom-modal-header"> Header </div>
-  }
-
   footer = () => {
-    return <div className="custom-modal-footer"> Footer </div>
+    return <Footer
+      isDisabled={false}
+      acceptText="SAVE"
+      disabledText="SAVING..."
+      cancelText="Cancel"
+      onCancel={() => {
+        console.log("Cancelled")
+      }}
+      onAccept={() => {
+        console.log("Saved")
+      }} />
   }
 }
