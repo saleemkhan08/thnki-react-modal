@@ -25,6 +25,7 @@ class Modal extends Component {
     const modalInnerClass = openModal ? 'thnki-show-modal-inner' : 'thnki-remove-modal-inner'
     const modalOuterClass = openModal ? 'thnki-show-modal-outer' : 'thnki-remove-modal-outer'
     const scrollableBodyClass = isScrollableBody ? 'thnki-modal-body' : ''
+    console.log('scrollableBodyClass :::::::::: ', scrollableBodyClass)
     if (!openModal) {
       return ''
     }
