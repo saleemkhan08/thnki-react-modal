@@ -1,13 +1,29 @@
 import React, { Component } from 'react'
-
-import ExampleComponent from 'thnki-react-modal'
-
+import Modal from 'thnki-react-modal'
+import "./index.css"
 export default class App extends Component {
-  render () {
+  state = {
+    openModal: false
+  }
+  render() {
     return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
+      <div className="custom-body">
+        <button onClick={() => {
+          this.setState({ openModal: true })
+        }}> Open Modal </button>
+        <Modal header={this.header()}
+          footer={this.footer()} onModalClose={() => { this.setState({ openModal: false }) }} openModal={this.state.openModal}>
+          <div className="custom-modal-body">Modal Body</div>
+        </Modal>
       </div>
     )
+  }
+
+  header = () => {
+    return <div className="custom-modal-header"> Header </div>
+  }
+
+  footer = () => {
+    return <div className="custom-modal-footer"> Footer </div>
   }
 }
