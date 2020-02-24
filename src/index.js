@@ -15,16 +15,17 @@ class Modal extends Component {
   }
 
   handleClickOutside = (event) => {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target) && !this.props.isClosingDisabled) {
       this.props.onModalClose()
     }
   }
 
   render() {
-    const { header, footer, children, onModalClose, openModal, isScrollableBody, ...others } = this.props
+    const { header, footer, children, onModalClose, openModal, isScrollableBody, isClosingDisabled, ...others } = this.props
     const modalInnerClass = openModal ? 'thnki-show-modal-inner' : 'thnki-remove-modal-inner'
     const modalOuterClass = openModal ? 'thnki-show-modal-outer' : 'thnki-remove-modal-outer'
     const scrollableBodyClass = isScrollableBody ? 'thnki-modal-body' : ''
+    const disabledClass = isClosingDisabled ? 'thnki-disabled' : ''
     console.log('scrollableBodyClass :::::::::: ', scrollableBodyClass)
     if (!openModal) {
       return ''
@@ -39,7 +40,9 @@ class Modal extends Component {
               this.setWrapperRef(undefined)
             }
           }}>
-          <span className='thnki-close-modal-button' onClick={onModalClose}>✕</span>
+          <span className={'thnki-close-modal-button ' + disabledClass} onClick={() => {
+            if (!disabledClass) onModalClose()
+          }}>✕</span>
           <div className='thnki-modal-header'>
             {header}
           </div>
@@ -83,11 +86,12 @@ export const ModalFooter = (props) => {
 }
 
 export const ConfirmationModal = (props) => {
-  const { onAccept, acceptText, cancelText, showConfirmation, onCancel, confirmationText } = props
+  const { onAccept, acceptText, cancelText, showConfirmation, onCancel, confirmationText, isDisabled, disabledText } = props
 
   return (
     <Modal
       onModalClose={onCancel}
+      isClosingDisabled={isDisabled}
       openModal={showConfirmation} >
       <ModalHeader style={{ paddingTop: '40px' }} text={confirmationText} />
       <ModalFooter
@@ -95,6 +99,8 @@ export const ConfirmationModal = (props) => {
         acceptText={acceptText || 'ACCEPT'}
         cancelText={cancelText || 'CANCEL'}
         onCancel={onCancel}
+        isDisabled={isDisabled}
+        disabledText={disabledText || 'ACCEPT'}
         onAccept={onAccept} />
     </Modal>
   )

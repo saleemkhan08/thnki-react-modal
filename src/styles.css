@@ -1,3 +1,8 @@
+.thnki-disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
 .thnki-modal-outer-container {
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;

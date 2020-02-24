@@ -22,15 +22,18 @@ export default class App extends Component {
           Confirm
         </button>
         <Modal header={<ModalHeader text="Header" />}
+          isClosingDisabled={true}
           footer={this.footer()} onModalClose={() => { this.setState({ openModal: false }) }} openModal={this.state.openModal}>
           <div className="custom-modal-body">Modal Body</div>
         </Modal>
 
-        <ConfirmationModal onAccept={() => {
-          console.log("Comfirmed")
-          this.setState({ openConfirmation: false })
-
-        }} acceptText="OK"
+        <ConfirmationModal
+          onAccept={() => {
+            console.log("Comfirmed")
+            this.setState({ openConfirmation: false })
+          }}
+          acceptText="OK"
+          disabledText="DISABLED"
           cancelText="CANCEL"
           showConfirmation={this.state.openConfirmation}
           onCancel={() => {
